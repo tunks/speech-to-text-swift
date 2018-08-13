@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041D868021216888000DE61B /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D867F21216888000DE61B /* TranslateViewController.swift */; };
+		041D868221216C9B000DE61B /* TranslateTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D868121216C9B000DE61B /* TranslateTextView.swift */; };
 		686F53331FFD1AFA008D3BA0 /* MicrophoneAdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686F53321FFD1AFA008D3BA0 /* MicrophoneAdvancedViewController.swift */; };
 		68A4C5172016B39D00835EE4 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A4C5162016B39D00835EE4 /* Starscream.framework */; };
 		7AE28FD31DD10D6900A663ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE28FD21DD10D6900A663ED /* AppDelegate.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		041D867F21216888000DE61B /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
+		041D868121216C9B000DE61B /* TranslateTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTextView.swift; sourceTree = "<group>"; };
 		686F53321FFD1AFA008D3BA0 /* MicrophoneAdvancedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneAdvancedViewController.swift; sourceTree = "<group>"; };
 		68A4C5162016B39D00835EE4 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		7AE28FCF1DD10D6900A663ED /* Speech to Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speech to Text.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +83,8 @@
 				7AE28FEA1DD1214000A663ED /* SpeechSample.wav */,
 				7AE28FEE1DD128D400A663ED /* MicrophoneBasicViewController.swift */,
 				686F53321FFD1AFA008D3BA0 /* MicrophoneAdvancedViewController.swift */,
+				041D867F21216888000DE61B /* TranslateViewController.swift */,
+				041D868121216C9B000DE61B /* TranslateTextView.swift */,
 			);
 			path = "Speech to Text";
 			sourceTree = "<group>";
@@ -187,9 +193,11 @@
 			files = (
 				7AE28FEF1DD128D400A663ED /* MicrophoneBasicViewController.swift in Sources */,
 				7AE28FED1DD121CE00A663ED /* Credentials.swift in Sources */,
+				041D868221216C9B000DE61B /* TranslateTextView.swift in Sources */,
 				7AE28FD51DD10D6900A663ED /* AudioFileViewController.swift in Sources */,
 				7AE28FD31DD10D6900A663ED /* AppDelegate.swift in Sources */,
 				686F53331FFD1AFA008D3BA0 /* MicrophoneAdvancedViewController.swift in Sources */,
+				041D868021216888000DE61B /* TranslateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

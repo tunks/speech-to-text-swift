@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i3a-KM-U3V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i3a-KM-U3V">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -147,6 +147,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="6Ce-RJ-ax7"/>
                         <segue destination="Hv0-da-b3m" kind="relationship" relationship="viewControllers" id="dpg-Ne-dFE"/>
                         <segue destination="BLs-kY-wBJ" kind="relationship" relationship="viewControllers" id="gCW-Xc-XbV"/>
+                        <segue destination="uC7-i8-aor" kind="relationship" relationship="viewControllers" id="yej-b7-e2p"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezA-H5-aOd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -218,5 +219,34 @@
             </objects>
             <point key="canvasLocation" x="2550" y="1548"/>
         </scene>
+        <!--Translate-->
+        <scene sceneID="E4e-PX-DYe">
+            <objects>
+                <viewController id="uC7-i8-aor" customClass="TranslateViewController" customModule="Speech_to_Text" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hfy-kK-v9v"/>
+                        <viewControllerLayoutGuide type="bottom" id="iUd-Ns-f48"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GHI-O4-are">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Gx-Iu-bMY">
+                                <rect key="frame" x="0.0" y="410" width="375" height="208"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Translate" image="transIcon" id="QMW-Pc-c6p"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xjq-I3-l0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3189.5999999999999" y="1547.6761619190406"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="transIcon" width="50" height="50"/>
+    </resources>
 </document>

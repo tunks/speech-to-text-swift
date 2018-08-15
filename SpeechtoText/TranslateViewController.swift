@@ -54,14 +54,6 @@ class TranslateViewController: UIViewController{
         self.translateView.layer.addSublayer(playerLayer);
         print("Translate view controller view loaded!")
         
-        /*let inputParams = AVMutableAudioMixInputParameters(track: audioTrack)
-        inputParams.setVolume(kVolume, at: kCMTimeZero)
-        parameterArray.append(inputParams)
-        audioMix.inputParameters = parameterArray
-        playerItem.audioMix = audioMix
- */
-        
-       
         
         //try! setupSpeechRecognizer()
         //translateLabel.type = .leftRight
@@ -173,16 +165,6 @@ class TranslateViewController: UIViewController{
        startSpeechRecognizer()
     }
     
-    func audioInput(assetTrack: AVAssetTrack){
-//         var audioMixInputParameters = AVMutableAudioMixInputParameters(track: assetTrack)
-//         var audioMix: AVMutableAudioMix = AVMutableAudioMix()
-//         audioMix.inputParameters = [audioMixInputParameters]
-         //playerItem?.add(<#T##output: AVPlayerItemOutput##AVPlayerItemOutput#>)
-        // playerItem?.audioMix = audioEngine.mainMixerNode
-        //audioMixInputParameters.
-        //audioMix.
-    }
-    
     func startSpeechRecognizer(){
         // Cancel the previous task if it's running.
         if let recognitionTask = recognitionTask {
@@ -258,24 +240,14 @@ class TranslateViewController: UIViewController{
         session.onResults = {
             results in
             self.accumulator.add(results: results)
-            //self.textView.text = self.accumulator.bestTranscript
+            self.translateLabel.text = self.accumulator.bestTranscript
             print(self.accumulator.bestTranscript)
         }
         
         // define recognition settings
-        //audio/l16;rate=16000;channels=2
-
         settings = RecognitionSettings(contentType: "audio/l16;rate=16000;channels=2")
         settings.interimResults = true
         settings.inactivityTimeout = -1
-        
-        //
-//        speechToText = SpeechToText(
-//            username: Credentials.SpeechToTextUsername,
-//            password: Credentials.SpeechToTextPassword
-//        )
-        
-        //speechToText.cr
     }
     
     func toggleWatsonSession(){
@@ -321,19 +293,6 @@ extension TranslateViewController :  SFSpeechRecognizerDelegate, MYAudioTabProce
              session.recognize(audio: data)
         }
     }
-    
-    
-    
-    
-    
-//    private func toData(buffer: AVAudioPCMBuffer) -> Data {
-//        let channelCount = 1  // given PCMBuffer channel count is 1
-//        let channels = UnsafeBufferPointer(start: buffer.floatChannelData, count: channelCount)
-//        let ch0Data = Data(bytes: channels[0],
-//                           count: Int( buffer.frameCapacity *
-//                                       buffer.format.streamDescription.pointee.mBytesPerFrame))
-//        return ch0Data
-//    }
 }
 
 

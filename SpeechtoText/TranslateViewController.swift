@@ -45,31 +45,24 @@ class TranslateViewController: UIViewController{
         self.translateView.layer.addSublayer(playerLayer);
         print("Translate view controller view loaded!")
         
-        
-        //try! setupSpeechRecognizer()
         //translateLabel.type = .leftRight
-        //translateLabel.speed = .rate(1)
+        translateLabel.speed = .rate(20.0)
         //translateLabel.fadeLength = 80.0
         translateLabel.labelWillBeginScroll()
         translateLabel.restartLabel()
         
         //tap audio asset track
-        tapAudioAssetTrack(audioTrack: audioTrack!)
+        setupTapAudioAssetTrack(audioTrack: audioTrack!)
         setupWatsonSpeechRecognizer()
     }
     
-    func tapAudioAssetTrack(audioTrack: AVAssetTrack){
-       // print("format  \(audioTrack.formatDescriptions)")
-        getFormatDescription(audioTrack: audioTrack)
-        tap = MYAudioTapProcessor(audioAssetTrack: audioTrack)
-        tap.delegate = self
-        player?.currentItem?.audioMix = tap.audioMix
-    }
-    
-    func getFormatDescription(audioTrack: AVAssetTrack){
+    func setupTapAudioAssetTrack(audioTrack: AVAssetTrack){
         let desc: CMAudioFormatDescription = audioTrack.formatDescriptions[0] as! CMAudioFormatDescription
         print("format description \(desc)")
         self.dataConverter = AudioDataConverter(fmt: AVAudioFormat(cmAudioFormatDescription: desc))
+        tap = MYAudioTapProcessor(audioAssetTrack: audioTrack)
+        tap.delegate = self
+        player?.currentItem?.audioMix = tap.audioMix
     }
     
     @IBAction func playAudioItem(_ sender: Any) {
@@ -146,7 +139,6 @@ class TranslateViewController: UIViewController{
             isSessionStarted = false
             isStreaming = false
             print("Stop Watson Sesson")
-            session.stopMicrophone()
             session.stopRequest()
             session.disconnect()
         }

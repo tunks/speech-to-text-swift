@@ -10,5 +10,4 @@ target 'SpeechtoText' do
   #google iOS pod
    #pod 'Firebase/Core'
     pod 'MarqueeLabel/Swift'
-    pod 'SwiftyJSON', '~> 4.0'
 end

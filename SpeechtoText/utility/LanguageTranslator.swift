@@ -16,8 +16,7 @@ class Language{
             return nil
         }
         
-        let detectedLangauge = Locale.current.localizedString(forIdentifier: languageCode)
-        
+       // let detectedLangauge = Locale.current.localizedString(forIdentifier: languageCode)
         return languageCode
     }
 }
@@ -56,11 +55,8 @@ class WatsonLanguageTranslator : Translator {
     }
     
     func translate(text: String, source: String, target: String, handle: TranslateHandler? = nil){
-        //assert(target.elementsEqual(source), "Source and target are same \(source)")
         let  request = TranslateRequest(text: [text], modelID: modelId(source, target),
                                         source: source, target: target )
-        //print("translate request source: \(request.source) , target: \(request.target), modelId: \(request.modelID)")
-
         self.translator.translate(request: request, failure: failure, success: success)
     }
     

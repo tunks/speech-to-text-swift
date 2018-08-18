@@ -5,9 +5,12 @@ target 'SpeechtoText' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Speech to Text
-  
-  #google iOS pod
-   #pod 'Firebase/Core'
-    pod 'MarqueeLabel/Swift'
+  # Pods for SpeechtoText
+
+  target 'SpeechtoTextUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  pod 'MarqueeLabel/Swift'
 end

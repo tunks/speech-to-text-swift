@@ -303,7 +303,7 @@ static void tap_PrepareCallback(MTAudioProcessingTapRef tap, CMItemCount maxFram
             // Set audio unit maximum frames per slice to max frames.
             if (noErr == status)
             {
-                UInt32 maximumFramesPerSlice = maxFrames;
+                UInt32 maximumFramesPerSlice = (UInt32)maxFrames;
                 status = AudioUnitSetProperty(audioUnit, kAudioUnitProperty_MaximumFramesPerSlice, kAudioUnitScope_Global, 0, &maximumFramesPerSlice, (UInt32)sizeof(UInt32));
             }
             

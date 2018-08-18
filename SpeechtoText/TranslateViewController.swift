@@ -33,9 +33,11 @@ class TranslateViewController: UIViewController{
 
     var dataConverter: AudioDataConverter!
     
+    var languageTranslator: Translator!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = Bundle.main.url(forResource: "video", withExtension: "mp4")
+        let url = Bundle.main.url(forResource: "ATT_Fiber", withExtension: "mp4")
         let urlAsset = AVURLAsset(url: url!)
         let audioTrack = urlAsset.tracks(withMediaType: AVMediaType.audio).first
         playerItem = AVPlayerItem(asset: urlAsset)
@@ -54,6 +56,13 @@ class TranslateViewController: UIViewController{
         //tap audio asset track
         setupTapAudioAssetTrack(audioTrack: audioTrack!)
         setupWatsonSpeechRecognizer()
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(self.playerDidFinishPlaying(_:)),
+                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                                               object: player?.currentItem)
+        
+        //setup language translator
+         self.languageTranslator = WatsonLanguageTranslator()
     }
     
     func setupTapAudioAssetTrack(audioTrack: AVAssetTrack){
@@ -65,6 +74,14 @@ class TranslateViewController: UIViewController{
         player?.currentItem?.audioMix = tap.audioMix
     }
     
+    @objc func playerDidFinishPlaying(_ note: NSNotification){
+        //Called when player finished playing
+        self.session.stopRequest()
+        self.session.disconnect()
+        print("Finished playing")
+    }
+    
+    
     @IBAction func playAudioItem(_ sender: Any) {
         playPauseAudio();
     }
@@ -75,6 +92,7 @@ class TranslateViewController: UIViewController{
             player?.play()
             playPauseButton.setTitle("Pause", for: UIControlState.normal)
             self.translateLabel.backgroundColor = UIColor(ciColor: CIColor.black)
+           // playerItem.
         }
         else{
             player?.pause()
@@ -102,7 +120,7 @@ class TranslateViewController: UIViewController{
     var settings: RecognitionSettings!
     var isSessionStarted = false
     var isStreaming = false
-    var accumulator = SpeechRecognitionResultsAccumulator()
+    //var accumulator = SpeechRecognitionResultsAccumulator()
     
     private func setupWatsonSpeechRecognizer(){
         // use `SpeechToTextSession` for advanced configuration
@@ -118,9 +136,18 @@ class TranslateViewController: UIViewController{
        // session.onPowerData = { decibels in print(decibels) }
         session.onResults = {
             results in
-             self.accumulator.add(results: results)
-             self.translateLabel.text = self.accumulator.bestTranscript
-             print(self.accumulator.bestTranscript)
+             var accumulator = SpeechRecognitionResultsAccumulator()
+             accumulator.add(results: results)
+             let transcript = accumulator.bestTranscript
+             self.translateLabel.text = transcript
+             print(transcript)
+             let detectedLangauge = Language.detectedLangauge(transcript)
+             //print("Detected language \(String(describing: detectedLangauge))")
+             let target = "fr"
+             self.languageTranslator.translate(text: transcript,
+                                               source: detectedLangauge!,
+                                               target: target)
+             
         }
         
         // define recognition settings
@@ -149,9 +176,7 @@ extension TranslateViewController : MYAudioTabProcessorDelegate {
     // getting audio buffer back from the tap and feeding into speech recognizer
     func audioTabProcessor(_ audioTabProcessor: MYAudioTapProcessor!, didReceive buffer: AVAudioPCMBuffer!) {
         if buffer != nil{
-             //print("buffer format desc: \(buffer.format.formatDescription)")
              let outBuffer = dataConverter.convertPCMBuffer(buffer: buffer)
-            // print("buffer data out \(outBuffer.format.formatDescription)")
              let data = outBuffer.toData()
              session.recognize(audio: data)
         }

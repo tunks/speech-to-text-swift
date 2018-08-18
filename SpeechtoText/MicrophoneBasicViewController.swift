@@ -18,7 +18,6 @@ import UIKit
 import SpeechToTextV1
 
 class MicrophoneBasicViewController: UIViewController {
-
     var speechToText: SpeechToText!
     var isStreaming = false
     var accumulator = SpeechRecognitionResultsAccumulator()
